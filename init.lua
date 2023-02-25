@@ -25,3 +25,9 @@ end)
 -- nerdtree bindings
 vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', {})
 
+-- lsp-zero setup
+local lsp = require('lsp-zero').preset({
+  name = 'recommended',
+})
+lsp.setup()
+
