@@ -17,5 +17,7 @@ return require('packer').startup(function(use)
   }
 
   -- file explorer -
-
+  use {'scrooloose/nerdtree'}
+  
 end)
+

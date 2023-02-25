@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  nerdtree = {
+    loaded = true,
+    path = "/home/matt/.local/share/nvim/site/pack/packer/start/nerdtree",
+    url = "https://github.com/scrooloose/nerdtree"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/matt/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
