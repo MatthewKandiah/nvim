@@ -1,4 +1,5 @@
-vim.keymap.set("n", "<Space>", "<Nop>", {silent = true})
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
+vim.keymap.set("n", ':LspZeroFormat<CR>', "<leader>r")
 vim.g.mapleader = " "
 
 vim.opt.number = true
@@ -18,4 +19,3 @@ vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 vim.opt.signcolumn = 'yes'
 vim.opt.autowriteall = true
-
