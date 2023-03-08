@@ -1,5 +1,5 @@
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
-vim.keymap.set("n", ':LspZeroFormat<CR>', "<leader>r")
+vim.keymap.set("n", '<leader>r', '<Cmd>LspZeroFormat<CR>')
 vim.g.mapleader = " "
 
 vim.opt.number = true
