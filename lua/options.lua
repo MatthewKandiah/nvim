@@ -17,3 +17,5 @@ vim.scrolloff = 8
 vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 vim.opt.signcolumn = 'yes'
+vim.opt.autowriteall = true
+
