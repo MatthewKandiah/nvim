@@ -15,3 +15,5 @@ vim.opt.expandtab = true
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set('n', '<leader>e', ':wqa<CR>')
+vim.keymap.set('n', '<F2>', vim.diagnostic.goto_next, {})
+vim.keymap.set('n', '<F3>', vim.diagnostic.goto_prev, {})

@@ -5,4 +5,3 @@ require("nvim-tree").setup()
 
 vim.keymap.set('n', '<F4>', ':NvimTreeFindFileToggle<CR>')
 vim.keymap.set('n', '<F5>', ':NvimTreeFocus<CR>')
-
