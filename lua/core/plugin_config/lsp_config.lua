@@ -18,7 +18,7 @@ local on_attach = function(_, _)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
   vim.keymap.set('n', 'gt', require('telescope.builtin').lsp_type_definitions, {})
-  vim.keymap.set('n', '<N>', vim.lsp.buf.hover, {})
+  vim.keymap.set('n', '<K>', vim.lsp.buf.hover, {})
 end
 
 require('mason-lspconfig').setup_handlers({
