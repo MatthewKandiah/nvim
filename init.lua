@@ -163,6 +163,7 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  'preservim/nerdtree',
 }, {})
 
 -- See `:help vim.o`
@@ -344,6 +345,10 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Nerdtree keymaps
+vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', { desc = '(N)erdtree (t)oggle' })
+vim.keymap.set('n', '<leader>nf', ':NERDTreeFocus<CR>', { desc = '(N)erdtree (f)ocus' })
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
