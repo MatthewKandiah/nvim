@@ -144,22 +144,34 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
   'preservim/nerdtree',
+  'mfussenegger/nvim-dap',
 }, {})
+
+-- debugging
+require("dap").adapters.lldb = {
+  type = "executable",
+  command = "/usr/local/bin/codelldb",
+  name = "lldb",
+}
+
+local lldb = {
+  name = "Launch lldb",
+  type = "lldb",
+  request = "launch",
+  program = function()
+    local input = vim.fn.input("Path to executable: " .. vim.fn.getcwd() .. "/")
+    return vim.fn.getcwd() .. "/" .. input
+  end,
+  cwd = "${workspaceFolder}",
+  stopOnEntry = false,
+  args = {},
+  runInTerminal = false,
+}
+
+require('dap').configurations.cpp = {
+  lldb
+}
 
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -171,7 +183,7 @@ vim.o.incsearch = true
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 12
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
