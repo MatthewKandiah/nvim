@@ -192,6 +192,7 @@ end
 require('nvim-dap-virtual-text').setup()
 
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {desc = 'dap toggle [b]reakpoint'})
+vim.keymap.set('n', '<leader>B', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, {desc = 'dap set conditional [B]reakpoint'})
 vim.keymap.set('n', '<leader>dc', dap.continue, {desc = '[d]ap [c]ontinue'})
 vim.keymap.set('n', '<F2>', dap.step_into, {desc = 'dap [s]tep in'})
 vim.keymap.set('n', '<F3>', dap.step_over, {desc = 'dap [n]ext'})
