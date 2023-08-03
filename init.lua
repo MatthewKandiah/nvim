@@ -174,6 +174,12 @@ dap.configurations.cpp = {
   },
 }
 
+vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {desc = 'dap toggle [b]reakpoint'})
+vim.keymap.set('n', '<leader>c', dap.continue, {desc = 'dap [c]ontinue'})
+vim.keymap.set('n', '<leader>n', dap.step_over, {desc = 'dap [n]ext'})
+vim.keymap.set('n', '<leader>s', dap.step_into, {desc = 'dap [s]tep in'})
+vim.keymap.set('n', '<leader>o', dap.step_out, {desc = 'dap step [o]ut'})
+
 -- probably won't use these much, but I think the exact same config should work well
 -- dap.configurations.c = dap.configurations.cpp
 -- dap.configuration.rust = dap.configurations.cpp
