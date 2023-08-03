@@ -147,6 +147,7 @@ require('lazy').setup({
   'preservim/nerdtree',
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
+  'theHamsta/nvim-dap-virtual-text',
 }, {})
 
 -- debugging
@@ -187,11 +188,14 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
+-- virtual text for current values
+require('nvim-dap-virtual-text').setup()
+
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {desc = 'dap toggle [b]reakpoint'})
 vim.keymap.set('n', '<leader>dc', dap.continue, {desc = '[d]ap [c]ontinue'})
-vim.keymap.set('n', '<leader>n', dap.step_over, {desc = 'dap [n]ext'})
-vim.keymap.set('n', '<leader>s', dap.step_into, {desc = 'dap [s]tep in'})
-vim.keymap.set('n', '<leader>o', dap.step_out, {desc = 'dap step [o]ut'})
+vim.keymap.set('n', '<F2>', dap.step_into, {desc = 'dap [s]tep in'})
+vim.keymap.set('n', '<F3>', dap.step_over, {desc = 'dap [n]ext'})
+vim.keymap.set('n', '<F4>', dap.step_out, {desc = 'dap step [o]ut'})
 
 -- probably won't use these much, but I think the exact same config should work well
 -- dap.configurations.c = dap.configurations.cpp
