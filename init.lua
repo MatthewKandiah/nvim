@@ -188,7 +188,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {desc = 'dap toggle [b]reakpoint'})
-vim.keymap.set('n', '<leader>c', dap.continue, {desc = 'dap [c]ontinue'})
+vim.keymap.set('n', '<leader>dc', dap.continue, {desc = '[d]ap [c]ontinue'})
 vim.keymap.set('n', '<leader>n', dap.step_over, {desc = 'dap [n]ext'})
 vim.keymap.set('n', '<leader>s', dap.step_into, {desc = 'dap [s]tep in'})
 vim.keymap.set('n', '<leader>o', dap.step_out, {desc = 'dap step [o]ut'})
