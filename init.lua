@@ -149,28 +149,21 @@ require('lazy').setup({
 }, {})
 
 -- debugging
-require("dap").adapters.lldb = {
-  type = "executable",
-  command = "/usr/local/bin/codelldb",
-  name = "lldb",
+
+local dap = require('dap')
+dap.adapters.codelldb = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 13000,
 }
 
-local lldb = {
-  name = "Launch lldb",
-  type = "lldb",
-  request = "launch",
-  program = function()
-    local input = vim.fn.input("Path to executable: " .. vim.fn.getcwd() .. "/")
-    return vim.fn.getcwd() .. "/" .. input
-  end,
-  cwd = "${workspaceFolder}",
-  stopOnEntry = false,
-  args = {},
-  runInTerminal = false,
-}
-
-require('dap').configurations.cpp = {
-  lldb
+dap.configurations.cpp = {
+  {
+    type = 'codelldb';
+    request = 'launch';
+    name = "Launch file";
+    program = vim.fn.getcwd() .. "/" .. vim.fn.input("Executable path: " .. vim.fn.getcwd() .. "/");
+  },
 }
 
 -- See `:help vim.o`
