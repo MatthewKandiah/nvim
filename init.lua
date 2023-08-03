@@ -144,22 +144,39 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
   'preservim/nerdtree',
+  'mfussenegger/nvim-dap',
 }, {})
+
+-- debugging
+
+local dap = require('dap')
+dap.adapters.codelldb = {
+  type = 'server',
+  port = "15231",
+  executable = {
+    -- absolute path to vscode extension with code lldb debug adapter
+    command = '/Users/matthewkandiah/.local/share/vscode-codelldb/adapter/codelldb',
+    args = {"--port", "15231"},
+  },
+}
+
+dap.configurations.cpp = {
+  {
+    type = 'codelldb',
+    request = 'launch',
+    name = "Launch file",
+    program = function()
+      return vim.fn.getcwd() .. '/' .. vim.fn.input('Path to executable:\n' .. vim.fn.getcwd() .. '/')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
+}
+
+-- probably won't use these much, but I think the exact same config should work well
+-- dap.configurations.c = dap.configurations.cpp
+-- dap.configuration.rust = dap.configurations.cpp
 
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -171,7 +188,7 @@ vim.o.incsearch = true
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 12
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
