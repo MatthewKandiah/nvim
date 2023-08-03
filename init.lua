@@ -153,18 +153,30 @@ require('lazy').setup({
 local dap = require('dap')
 dap.adapters.codelldb = {
   type = 'server',
-  host = '127.0.0.1',
-  port = 13000,
+  port = "15231",
+  executable = {
+    -- absolute path to vscode extension with code lldb debug adapter
+    command = '/Users/matthewkandiah/.local/share/vscode-codelldb/adapter/codelldb',
+    args = {"--port", "15231"},
+  },
 }
 
 dap.configurations.cpp = {
   {
-    type = 'codelldb';
-    request = 'launch';
-    name = "Launch file";
-    program = vim.fn.getcwd() .. "/" .. vim.fn.input("Executable path: " .. vim.fn.getcwd() .. "/");
+    type = 'codelldb',
+    request = 'launch',
+    name = "Launch file",
+    program = function()
+      return vim.fn.getcwd() .. '/' .. vim.fn.input('Path to executable:\n' .. vim.fn.getcwd() .. '/')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
   },
 }
+
+-- probably won't use these much, but I think the exact same config should work well
+-- dap.configurations.c = dap.configurations.cpp
+-- dap.configuration.rust = dap.configurations.cpp
 
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
