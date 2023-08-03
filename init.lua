@@ -146,10 +146,10 @@ require('lazy').setup({
   },
   'preservim/nerdtree',
   'mfussenegger/nvim-dap',
+  'rcarriga/nvim-dap-ui',
 }, {})
 
 -- debugging
-
 local dap = require('dap')
 dap.adapters.codelldb = {
   type = 'server',
@@ -173,6 +173,19 @@ dap.configurations.cpp = {
     stopOnEntry = false,
   },
 }
+
+-- better debugging UI 
+local dapui = require("dapui")
+dapui.setup()
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
 
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {desc = 'dap toggle [b]reakpoint'})
 vim.keymap.set('n', '<leader>c', dap.continue, {desc = 'dap [c]ontinue'})
@@ -425,7 +438,9 @@ local servers = {
 }
 
 -- Setup neovim lua configuration
-require('neodev').setup()
+require('neodev').setup({
+  library = { plugins = {"nvim-dap-ui" }, types = true }
+})
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
