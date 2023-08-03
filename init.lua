@@ -207,8 +207,8 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- auto writing saves might give better instant diagnostic feedback?
-vim.o.autowrite = true
-vim.o.autowriteall = true
+-- vim.o.autowrite = true
+-- vim.o.autowriteall = true
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
