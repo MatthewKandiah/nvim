@@ -163,6 +163,7 @@ dap.adapters.codelldb = {
   },
 }
 
+-- auto launch debug server
 dap.configurations.cpp = {
   {
     type = 'codelldb',
