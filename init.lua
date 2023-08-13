@@ -153,13 +153,14 @@ require('lazy').setup({
 
 -- debugging
 local dap = require('dap')
+local home = os.getenv('HOME');
 dap.adapters.codelldb = {
   type = 'server',
   port = "15231",
   executable = {
     -- absolute path to vscode extension with code lldb debug adapter
     -- os.getenv('HOME') to be OS generic maybe?
-    command = '/home/matt/.local/share/nvim/mason/bin/codelldb',
+    command = home .. '/.local/share/nvim/mason/bin/codelldb',
     args = {"--port", "15231"},
   },
 }
