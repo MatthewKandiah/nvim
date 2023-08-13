@@ -158,7 +158,8 @@ dap.adapters.codelldb = {
   port = "15231",
   executable = {
     -- absolute path to vscode extension with code lldb debug adapter
-    command = '/Users/matthewkandiah/.local/share/vscode-codelldb/adapter/codelldb',
+    -- os.getenv('HOME') to be OS generic maybe?
+    command = '/home/matt/.local/share/nvim/mason/bin/codelldb',
     args = {"--port", "15231"},
   },
 }
