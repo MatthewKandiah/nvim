@@ -161,7 +161,7 @@ dap.adapters.codelldb = {
     -- absolute path to vscode extension with code lldb debug adapter
     -- os.getenv('HOME') to be OS generic maybe?
     command = home .. '/.local/share/nvim/mason/bin/codelldb',
-    args = {"--port", "15231"},
+    args = { "--port", "15231" },
   },
 }
 
@@ -179,7 +179,7 @@ dap.configurations.cpp = {
   },
 }
 
--- better debugging UI 
+-- better debugging UI
 local dapui = require("dapui")
 dapui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -195,35 +195,36 @@ end
 -- virtual text for current values
 require('nvim-dap-virtual-text').setup()
 
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {desc = 'dap toggle [b]reakpoint'})
-vim.keymap.set('n', '<leader>B', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, {desc = 'dap set conditional [B]reakpoint'})
-vim.keymap.set('n', '<leader>dc', dap.continue, {desc = '[d]ap [c]ontinue'})
-vim.keymap.set('n', '<F2>', dap.step_into, {desc = 'dap [s]tep in'})
-vim.keymap.set('n', '<F3>', dap.step_over, {desc = 'dap [n]ext'})
-vim.keymap.set('n', '<F4>', dap.step_out, {desc = 'dap step [o]ut'})
+vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'dap toggle [b]reakpoint' })
+vim.keymap.set('n', '<leader>B', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+  { desc = 'dap set conditional [B]reakpoint' })
+vim.keymap.set('n', '<leader>dc', dap.continue, { desc = '[d]ap [c]ontinue' })
+vim.keymap.set('n', '<F2>', dap.step_into, { desc = 'dap [s]tep in' })
+vim.keymap.set('n', '<F3>', dap.step_over, { desc = 'dap [n]ext' })
+vim.keymap.set('n', '<F4>', dap.step_out, { desc = 'dap step [o]ut' })
 
 -- probably won't use these much, but I think the exact same config should work well
 -- dap.configurations.c = dap.configurations.cpp
 -- dap.configuration.rust = dap.configurations.cpp
 
 -- treesitter context
-require'treesitter-context'.setup{
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+require 'treesitter-context'.setup {
+  enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
+  max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
+  min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
   line_numbers = true,
   multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+  trim_scope = 'outer',     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+  mode = 'cursor',          -- Line used to calculate context. Choices: 'cursor', 'topline'
   -- Separator between context and content. Should be a single character string, like '-'.
   -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
   separator = nil,
-  zindex = 20, -- The Z-index of the context window
+  zindex = 20,     -- The Z-index of the context window
   on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 }
 vim.keymap.set('n', '[c', function()
   require('treesitter-context').go_to_context()
-end, { desc = {'Go to [c]ontext'} })
+end, { desc = { 'Go to [c]ontext' } })
 
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -239,6 +240,13 @@ vim.o.scrolloff = 12
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
+
+-- tabs
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.smarttab = true
+vim.o.expandtab = false
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -467,7 +475,7 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup({
-  library = { plugins = {"nvim-dap-ui" }, types = true }
+  library = { plugins = { "nvim-dap-ui" }, types = true }
 })
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -511,8 +519,8 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -538,6 +546,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- convert to hex for viewing binary files
+vim.api.nvim_create_user_command('HexView', '%!xxd', { desc = 'convert current buffer to hex view' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
