@@ -149,6 +149,8 @@ require('lazy').setup({
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
   'theHamsta/nvim-dap-virtual-text',
+  'milisims/nvim-luaref',
+  'folke/lua-dev.nvim',
 }, {})
 
 -- debugging
