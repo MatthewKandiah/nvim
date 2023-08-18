@@ -145,4 +145,7 @@ require('lazy').setup({
   'theHamsta/nvim-dap-virtual-text',
   'milisims/nvim-luaref',
   'folke/lua-dev.nvim',
+
+  -- my in-development plugins
+  {dir = '/home/matt/repos/motte', name = 'motte'},
 }, {})

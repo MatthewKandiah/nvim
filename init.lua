@@ -15,3 +15,5 @@ require('treesitter-setup')
 require('lsp-setup')
 require('cmp-setup')
 
+-- require('motte')
+
