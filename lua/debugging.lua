@@ -25,6 +25,8 @@ dap.configurations.cpp = {
   },
 }
 
+dap.configurations.c = dap.configurations.cpp
+
 -- better debugging UI
 local dapui = require("dapui")
 dapui.setup()
