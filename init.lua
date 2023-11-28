@@ -120,3 +120,9 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+vim.lsp.start({
+	name = 'some-name',
+	cmd = {'lua-language-server'},
+	root_dir = vim.fs.dirname(vim.fs.find({'init.lua'}, {upward=true})[1]),
+})
+
