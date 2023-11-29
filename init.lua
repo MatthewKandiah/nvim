@@ -147,3 +147,5 @@ lspconfig.lua_ls.setup({
 	end,
 	on_attach = on_attach,
 })
+-- requires rust-analyzer on path
+lspconfig.rust_analyzer.setup({on_attach = on_attach})
