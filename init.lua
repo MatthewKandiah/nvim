@@ -189,3 +189,8 @@ lspconfig.gopls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+-- requires typescript and tsserver on path
+lspconfig.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
