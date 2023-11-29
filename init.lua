@@ -62,8 +62,9 @@ require('lazy').setup({
 	{
 		'nvim-treesitter/nvim-treesitter',
 		dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+		build = ':TSUpdate',
 	},
-	build = ':TSUpdate',
+	{ 'folke/which-key.nvim', opts={} },
 }, {})
 
 -- copy to clipboard

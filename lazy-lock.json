@@ -12,5 +12,6 @@
   "onedark.nvim": { "branch": "master", "commit": "e7c656ac6b6460aaab817cbd0c9d5c043eda4b43" },
   "plenary.nvim": { "branch": "master", "commit": "366b0837486f60ae0e7550c15de8ff66d057c4cd" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
-  "telescope.nvim": { "branch": "0.1.x", "commit": "54930e1abfc94409e1bb9266e752ef8379008592" }
+  "telescope.nvim": { "branch": "0.1.x", "commit": "54930e1abfc94409e1bb9266e752ef8379008592" },
+  "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
 }
