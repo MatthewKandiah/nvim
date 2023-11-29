@@ -54,6 +54,11 @@ require('lazy').setup({
 		end,
 	},
 	'folke/lua-dev.nvim',
+	'folke/neodev.nvim',
+	'hrsh7th/cmp-nvim-lsp',
+	'hrsh7th/nvim-cmp',
+	'L3MON4D3/LuaSnip',
+	'saadparwaiz1/cmp_luasnip',
 }, {})
 
 -- copy to clipboard
@@ -100,7 +105,33 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
+-- autocompletion config
+local cmp = require('cmp')
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end,
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	mapping = cmp.mapping.preset.insert({
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	}),
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+	})
+})
+
 -- lsp config
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(_, bufnr)
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -146,6 +177,10 @@ lspconfig.lua_ls.setup({
 		return true
 	end,
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 -- requires rust-analyzer on path
-lspconfig.rust_analyzer.setup({on_attach = on_attach})
+lspconfig.rust_analyzer.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
