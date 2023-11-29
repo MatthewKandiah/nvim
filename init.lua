@@ -155,6 +155,7 @@ end
 local lspconfig = require('lspconfig')
 -- requires lua-language-server on path
 lspconfig.lua_ls.setup({
+	-- extra setup for better neovim package development support, copied from lspconfig's documentation
 	on_init = function(client)
 		local path = client.workspace_folders[1].name
 		if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
@@ -196,6 +197,16 @@ lspconfig.tsserver.setup({
 })
 -- requires dart on path
 lspconfig.dartls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+-- requires clangd on path
+lspconfig.clangd.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+-- requires cmake-language-server on path
+lspconfig.cmake.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
