@@ -194,3 +194,8 @@ lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+-- requires dart on path
+lspconfig.dartls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
