@@ -77,7 +77,8 @@ require('lazy').setup({
 		'numToStr/Comment.nvim',
 		opts = {},
 		lazy = false,
-	}
+	},
+	'tpope/vim-fugitive',
 }, {})
 
 -- copy to clipboard
