@@ -46,13 +46,7 @@ vim.opt.rtp:prepend(lazypath)
 -- install plugins
 require('lazy').setup({
 	'neovim/nvim-lspconfig',
-	{
-		'navarasu/onedark.nvim',
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme 'onedark'
-		end,
-	},
+	'navarasu/onedark.nvim',
 	{ 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
@@ -79,6 +73,7 @@ require('lazy').setup({
 		lazy = false,
 	},
 	'tpope/vim-fugitive',
+	'lewis6991/gitsigns.nvim',
 }, {})
 
 -- copy to clipboard
@@ -293,3 +288,14 @@ vim.defer_fn(function()
 		},
 	}
 end, 0)
+
+-- theme config
+local theme = require('onedark')
+theme.setup {
+	style = 'darker',
+	ending_tildes = true,
+}
+theme.load()
+
+-- git signs config
+require('gitsigns').setup()
