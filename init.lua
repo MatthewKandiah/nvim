@@ -74,6 +74,12 @@ require('lazy').setup({
 	},
 	'tpope/vim-fugitive',
 	'lewis6991/gitsigns.nvim',
+	{
+		'stevearc/oil.nvim',
+		opts = {},
+		-- Optional dependencies
+		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+	}
 }, {})
 
 -- copy to clipboard
@@ -299,3 +305,6 @@ theme.load()
 
 -- git signs config
 require('gitsigns').setup()
+
+-- file explorer
+require('oil').setup()
