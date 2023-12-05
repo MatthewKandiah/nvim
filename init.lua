@@ -216,6 +216,16 @@ lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+-- requires vscode-css-language-server on path
+lspconfig.cssls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+-- requires cssmodules-language-server on path
+lspconfig.cssmodules_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 -- requires dart on path
 lspconfig.dartls.setup({
 	on_attach = on_attach,
