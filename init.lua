@@ -20,6 +20,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
+vim.wo.linebreak = true
 
 -- netrw config
 vim.g.netrw_banner = 0
@@ -47,7 +48,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	'neovim/nvim-lspconfig',
 	'navarasu/onedark.nvim',
-	{ 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+	{
+		'nvim-telescope/telescope.nvim',
+		branch = '0.1.x',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'make',
@@ -66,7 +71,7 @@ require('lazy').setup({
 		dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
 		build = ':TSUpdate',
 	},
-	{ 'folke/which-key.nvim',          opts = {} },
+	{ 'folke/which-key.nvim', opts = {} },
 	{
 		'numToStr/Comment.nvim',
 		opts = {},
@@ -112,6 +117,14 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- telescope config
+-- require('telescope').setup({defaults = {wrap_results = true}})
+require('telescope').setup({
+	defaults = {
+		path_display = {
+			truncate = 3
+		}
+	}
+})
 pcall(require('telescope').load_extension, 'fzf')
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', function()
