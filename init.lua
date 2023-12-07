@@ -245,8 +245,8 @@ lspconfig.cmake.setup({
 -- treesitter config
 vim.defer_fn(function()
 	require('nvim-treesitter.configs').setup {
-		ensure_installed = { 'c', 'cpp', 'go', 'lua', 'rust', 'tsx', 'javascript', 'typescript', },
-		auto_install = false,
+		ensure_installed = { 'lua' },
+		auto_install = true,
 		highlight = { enable = true },
 		indent = { enable = true },
 		incremental_selection = {
