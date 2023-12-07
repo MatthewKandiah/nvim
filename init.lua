@@ -229,6 +229,16 @@ lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+-- requires vscode-css-language-server on path
+lspconfig.cssls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+-- requires cssmodules-language-server on path
+lspconfig.cssmodules_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 -- requires dart on path
 lspconfig.dartls.setup({
 	on_attach = on_attach,
@@ -248,8 +258,8 @@ lspconfig.cmake.setup({
 -- treesitter config
 vim.defer_fn(function()
 	require('nvim-treesitter.configs').setup {
-		ensure_installed = { 'c', 'cpp', 'go', 'lua', 'rust', 'tsx', 'javascript', 'typescript', },
-		auto_install = false,
+		ensure_installed = { 'lua' },
+		auto_install = true,
 		highlight = { enable = true },
 		indent = { enable = true },
 		incremental_selection = {
