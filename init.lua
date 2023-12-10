@@ -120,7 +120,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- telescope config
 -- search hidden files, but still ignore .git files https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
-local vimgrep_arguments = {unpack(require("telescope.config").values.vimgrep_arguments)}
+local vimgrep_arguments = { unpack(require("telescope.config").values.vimgrep_arguments) }
 table.insert(vimgrep_arguments, "--hidden")
 table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!**/.git/*")
@@ -133,7 +133,7 @@ require('telescope').setup({
 	},
 	pickers = {
 		find_files = {
-			find_command = {"rg", "--files", "--hidden", "--glob", "!**/.git/*"},
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 		},
 	},
 })
@@ -147,6 +147,9 @@ vim.keymap.set('n', '<leader><space>', function()
 end, { desc = '[ ] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>s~', function()
+	require('telescope.builtin').find_files({ cwd = vim.env.HOME })
+end, { desc = '[S]earch [~] Directory' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
