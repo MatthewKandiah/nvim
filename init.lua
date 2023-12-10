@@ -119,13 +119,23 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- telescope config
--- require('telescope').setup({defaults = {wrap_results = true}})
+-- search hidden files, but still ignore .git files https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
+local vimgrep_arguments = {unpack(require("telescope.config").values.vimgrep_arguments)}
+table.insert(vimgrep_arguments, "--hidden")
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
 require('telescope').setup({
 	defaults = {
+		vimgrep_arguments = vimgrep_arguments,
 		path_display = {
 			truncate = 3
-		}
-	}
+		},
+	},
+	pickers = {
+		find_files = {
+			find_command = {"rg", "--files", "--hidden", "--glob", "!**/.git/*"},
+		},
+	},
 })
 pcall(require('telescope').load_extension, 'fzf')
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
