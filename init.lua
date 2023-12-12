@@ -202,6 +202,10 @@ local on_attach = function(_, bufnr)
 end
 
 local lspconfig = require('lspconfig')
+local default_lsp_options = {
+	on_attach = on_attach,
+	capabilities = capabilities,
+}
 -- requires lua-language-server on path
 lspconfig.lua_ls.setup({
 	-- extra setup for better neovim package development support, copied from lspconfig's documentation
@@ -230,50 +234,23 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 })
 -- requires rust-analyzer on path
-lspconfig.rust_analyzer.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.rust_analyzer.setup(default_lsp_options)
 -- requires gopls on path
-lspconfig.gopls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.gopls.setup(default_lsp_options)
 -- requires typescript and tsserver on path
-lspconfig.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.tsserver.setup(default_lsp_options)
 -- requires vscode-css-language-server on path
-lspconfig.cssls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.cssls.setup(default_lsp_options)
 -- requires cssmodules-language-server on path
-lspconfig.cssmodules_ls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.cssmodules_ls.setup(default_lsp_options)
 -- requires dart on path
-lspconfig.dartls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.dartls.setup(default_lsp_options)
 -- requires clangd on path
-lspconfig.clangd.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.clangd.setup(default_lsp_options)
 -- requires cmake-language-server on path
-lspconfig.cmake.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.cmake.setup(default_lsp_options)
 -- requires zls on path
-lspconfig.zls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.zls.setup(default_lsp_options)
 
 -- treesitter config
 vim.defer_fn(function()
