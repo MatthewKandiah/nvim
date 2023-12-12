@@ -269,6 +269,11 @@ lspconfig.cmake.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+-- requires zls on path
+lspconfig.zls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
 -- treesitter config
 vim.defer_fn(function()
