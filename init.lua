@@ -370,6 +370,7 @@ dap.adapters.codelldb = {
 	type = 'server',
 	port = '${port}',
 	executable = {
+		-- requires codelldb executable at the specified absolute path
 		command = '/usr/bin/codelldb',
 		args = { '--port', '${port}' },
 	}
@@ -386,3 +387,8 @@ dap.configurations.rust = {
 		stopOnEntry = false,
 	}
 }
+vim.keymap.set('n', '<leader>dd', ':DapContinue<CR>')
+vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
+vim.keymap.set('n', '<F1>', ':DapStepOut<CR>')
+vim.keymap.set('n', '<F2>', ':DapStepOver<CR>')
+vim.keymap.set('n', '<F3>', ':DapStepInto<CR>')
