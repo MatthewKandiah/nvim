@@ -23,14 +23,6 @@ vim.o.termguicolors = true
 vim.wo.linebreak = true
 vim.o.cursorline = true
 
--- netrw config
-vim.g.netrw_banner = 0
-vim.g.netrw_keepdir = 0
-vim.g.netrw_sort_sequence = [[[\/]$,*]] -- directories first
-vim.g.netrw_sizestyle = "H"
-vim.g.netrw_liststyle = 0
-vim.g.netrw_hide = 0
-
 -- bootstrap package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
