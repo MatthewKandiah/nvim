@@ -77,7 +77,9 @@ require('lazy').setup({
 		opts = {},
 		-- Optional dependencies
 		-- dependencies = { "nvim-tree/nvim-web-devicons" },
-	}
+	},
+	'mfussenegger/nvim-dap',
+	'rcarriga/nvim-dap-ui',
 }, {})
 
 -- copy to clipboard
@@ -321,3 +323,66 @@ require('gitsigns').setup()
 
 -- file explorer
 require('oil').setup()
+
+-- dap config
+require('neodev').setup({
+	library = {
+		plugins = {
+			{ 'nvim-dap-ui' }, types = true,
+		}
+	}
+})
+local dap = require('dap')
+local dapui = require('dapui')
+dapui.setup({
+	layouts = {
+		{
+			elements = { {
+				id = 'stacks',
+				size = 0.25,
+			}, {
+				id = 'breakpoints',
+				size = 0.25,
+			}, {
+				id = 'watches',
+				size = 0.5,
+			}, },
+			position = 'left',
+			size = 40,
+		},
+	},
+	icons = {
+		collapsed = '>',
+		expanded = 'V',
+		current_frame = 'O',
+	},
+})
+dap.listeners.after.event_initialized['dapui_config'] = function()
+	dapui.open()
+end
+dap.listeners.before.event_terminated['dapui_config'] = function()
+	dapui.close()
+end
+dap.listeners.before.event_exited['dapui_config'] = function()
+	dapui.close()
+end
+dap.adapters.codelldb = {
+	type = 'server',
+	port = '${port}',
+	executable = {
+		command = '/usr/bin/codelldb',
+		args = { '--port', '${port}' },
+	}
+}
+dap.configurations.rust = {
+	{
+		name = 'Launch file',
+		type = 'codelldb',
+		request = 'launch',
+		program = function()
+			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+	}
+}
