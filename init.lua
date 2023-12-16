@@ -338,14 +338,11 @@ dapui.setup({
 	layouts = {
 		{
 			elements = { {
-				id = 'stacks',
-				size = 0.25,
-			}, {
 				id = 'breakpoints',
 				size = 0.25,
 			}, {
 				id = 'watches',
-				size = 0.5,
+				size = 0.75,
 			}, },
 			position = 'left',
 			size = 40,
