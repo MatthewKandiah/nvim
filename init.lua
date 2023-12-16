@@ -384,8 +384,8 @@ dap.configurations.rust = {
 		stopOnEntry = false,
 	}
 }
-vim.keymap.set('n', '<leader>dd', ':DapContinue<CR>')
-vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
-vim.keymap.set('n', '<F1>', ':DapStepOut<CR>')
-vim.keymap.set('n', '<F2>', ':DapStepOver<CR>')
-vim.keymap.set('n', '<F3>', ':DapStepInto<CR>')
+vim.keymap.set('n', '<leader>dd', dap.continue)
+vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint)
+vim.keymap.set('n', '<F1>', dap.step_out)
+vim.keymap.set('n', '<F2>', dap.step_over)
+vim.keymap.set('n', '<F3>', dap.step_into)
