@@ -82,11 +82,15 @@ require('lazy').setup({
 	'rcarriga/nvim-dap-ui',
 }, {})
 
--- copy to clipboard
+-- copy to clipboard and selection registers
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
 vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+Y')
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
 vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P')
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"*y')
+vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"*Y')
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"*p')
+vim.keymap.set({ 'n', 'v' }, '<leader>P', '"*P')
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- yank group highlight
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
