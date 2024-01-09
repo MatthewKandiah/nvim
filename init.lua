@@ -326,7 +326,10 @@ theme.load()
 require('gitsigns').setup()
 
 -- file explorer
-require('oil').setup()
+local oil = require('oil')
+local oil_actions = require('oil.actions')
+oil.setup()
+vim.keymap.set('n', '<leader>o', oil_actions.open_cwd.callback)
 
 -- dap config
 require('neodev').setup({
