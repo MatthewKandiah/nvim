@@ -80,6 +80,7 @@ require('lazy').setup({
 	},
 	'mfussenegger/nvim-dap',
 	'rcarriga/nvim-dap-ui',
+  'mbbill/undotree',
 }, {})
 
 -- copy to clipboard and selection registers
@@ -116,6 +117,8 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- Undo tree
+vim.keymap.set('n', '<leader>u', ":UndotreeToggle<CR>", { desc = 'Toggle undo tree'})
 
 -- telescope config
 -- search hidden files, but still ignore .git files https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
@@ -250,6 +253,8 @@ lspconfig.clangd.setup(default_lsp_options)
 lspconfig.cmake.setup(default_lsp_options)
 -- requires zls on path
 lspconfig.zls.setup(default_lsp_options)
+-- requires marksman on path
+lspconfig.marksman.setup(default_lsp_options)
 
 -- treesitter config
 vim.defer_fn(function()
