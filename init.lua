@@ -80,7 +80,7 @@ require('lazy').setup({
 	},
 	'mfussenegger/nvim-dap',
 	'rcarriga/nvim-dap-ui',
-  'mbbill/undotree',
+    'mbbill/undotree',
 }, {})
 
 -- copy to clipboard and selection registers
@@ -128,6 +128,8 @@ table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!**/.git/*")
 require('telescope').setup({
 	defaults = {
+		layout_strategy = 'vertical',
+		layout_config = { height = 0.95 },
 		vimgrep_arguments = vimgrep_arguments,
 		path_display = {
 			truncate = 3
@@ -240,7 +242,12 @@ lspconfig.rust_analyzer.setup(default_lsp_options)
 -- requires gopls on path
 lspconfig.gopls.setup(default_lsp_options)
 -- requires typescript and tsserver on path
-lspconfig.tsserver.setup(default_lsp_options)
+lspconfig.tsserver.setup({capabilities = capabilities, on_attach = function(_, bufnr)
+	on_attach(_, bufnr)
+	vim.o.tabstop = 2
+	vim.o.softtabstop = 2
+	vim.o.shiftwidth = 2
+end})
 -- requires vscode-css-language-server on path
 lspconfig.cssls.setup(default_lsp_options)
 -- requires cssmodules-language-server on path
