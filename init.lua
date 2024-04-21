@@ -80,7 +80,8 @@ require('lazy').setup({
 	},
 	'mfussenegger/nvim-dap',
 	'rcarriga/nvim-dap-ui',
-    'mbbill/undotree',
+	'mbbill/undotree',
+	'hiphish/rainbow-delimiters.nvim',
 }, {})
 
 -- copy to clipboard and selection registers
@@ -118,7 +119,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 -- Undo tree
-vim.keymap.set('n', '<leader>u', ":UndotreeToggle<CR>", { desc = 'Toggle undo tree'})
+vim.keymap.set('n', '<leader>u', ":UndotreeToggle<CR>", { desc = 'Toggle undo tree' })
 
 -- telescope config
 -- search hidden files, but still ignore .git files https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
@@ -242,12 +243,15 @@ lspconfig.rust_analyzer.setup(default_lsp_options)
 -- requires gopls on path
 lspconfig.gopls.setup(default_lsp_options)
 -- requires typescript and tsserver on path
-lspconfig.tsserver.setup({capabilities = capabilities, on_attach = function(_, bufnr)
-	on_attach(_, bufnr)
-	vim.o.tabstop = 2
-	vim.o.softtabstop = 2
-	vim.o.shiftwidth = 2
-end})
+lspconfig.tsserver.setup({
+	capabilities = capabilities,
+	on_attach = function(_, bufnr)
+		on_attach(_, bufnr)
+		vim.o.tabstop = 2
+		vim.o.softtabstop = 2
+		vim.o.shiftwidth = 2
+	end
+})
 -- requires vscode-css-language-server on path
 lspconfig.cssls.setup(default_lsp_options)
 -- requires cssmodules-language-server on path
@@ -266,6 +270,7 @@ lspconfig.marksman.setup(default_lsp_options)
 -- treesitter config
 vim.defer_fn(function()
 	require('nvim-treesitter.configs').setup {
+		rainbow = { enable = true },
 		ensure_installed = { 'lua' },
 		auto_install = true,
 		highlight = { enable = true },
