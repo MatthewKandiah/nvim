@@ -266,6 +266,8 @@ lspconfig.cmake.setup(default_lsp_options)
 lspconfig.zls.setup(default_lsp_options)
 -- requires marksman on path
 lspconfig.marksman.setup(default_lsp_options)
+-- requires racket-langserver installed with `raco`, and `racket` on path
+lspconfig.racket_langserver.setup(default_lsp_options)
 
 -- treesitter config
 vim.defer_fn(function()
