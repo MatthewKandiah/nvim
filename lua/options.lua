@@ -26,3 +26,11 @@ vim.o.shiftwidth = 2
 vim.o.smarttab = true
 vim.o.expandtab = true
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
+vim.cmd('colorscheme gruber-darker')

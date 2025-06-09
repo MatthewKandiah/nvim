@@ -1,13 +1,3 @@
-require('options')
-require('clipboard')
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
-
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -18,7 +8,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
-
 require('lazy').setup({
   'romainl/Apprentice',
   'thimc/gruber-darker.nvim',
@@ -60,7 +49,6 @@ require('lazy').setup({
       }
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sf', builtin.find_files)
       vim.keymap.set('n', '<leader>sg', builtin.live_grep)
@@ -80,7 +68,6 @@ require('lazy').setup({
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf })
           end
-
           map('<leader>r', vim.lsp.buf.rename)
           map('<leader>ca', vim.lsp.buf.code_action)
           map('gr', require('telescope.builtin').lsp_references)
@@ -127,7 +114,8 @@ require('lazy').setup({
   'tpope/vim-fugitive',
 })
 
-vim.cmd('colorscheme gruber-darker')
+require('options')
+require('clipboard')
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('ols')
