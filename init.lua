@@ -1,5 +1,5 @@
 require('options')
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+require('clipboard')
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
@@ -173,41 +173,4 @@ cmp.setup.cmdline({ ':' }, {
   },
 })
 
-local oil = require('oil')
-local oil_actions = require('oil.actions')
-vim.keymap.set('n', '<leader>o', oil.open)
-vim.keymap.set('n', '<leader>_', oil_actions.open_cwd.callback)
-
--- My janky workarounds
--- TODO functionality
-local function insertTodoComment()
-  local current_line_number = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_buf_set_lines(0, current_line_number, current_line_number, false, { 'TODO-Matt' })
-  require('Comment.api').comment.linewise.count(2)
-  require('Comment.api').uncomment.linewise.current()
-  vim.cmd("normal j$")
-end
-vim.keymap.set({ 'n' }, '<leader>t', insertTodoComment)
-
--- quick uppercasing
-local function upperCaseSurroundingWord()
-  vim.cmd("normal gUiw")
-end
-local function upperCaseSurroundingBigWord()
-  vim.cmd("normal gUiW")
-end
-vim.keymap.set({ 'n' }, '<leader>u', upperCaseSurroundingWord)
-vim.keymap.set({ 'n' }, '<leader>U', upperCaseSurroundingBigWord)
-
--- copy to clipboard and selection registers
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
-vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+Y')
-vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
-vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P')
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '"*y')
-vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"*Y')
-vim.keymap.set({ 'n', 'v' }, '<leader>p', '"*p')
-vim.keymap.set({ 'n', 'v' }, '<leader>P', '"*P')
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+require('keymap')
