@@ -5,7 +5,6 @@ require('lazy').setup({
   'lewis6991/gitsigns.nvim',
   {
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
