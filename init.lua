@@ -2,18 +2,7 @@ require('lazy-bootstrap')
 require('lazy').setup({
   'romainl/Apprentice',
   'thimc/gruber-darker.nvim',
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    }
-  },
+  'lewis6991/gitsigns.nvim',
   {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -110,3 +99,12 @@ require('clipboard')
 require('lsp-conf')
 require('cmp-conf')
 require('keymap')
+require('gitsigns').setup({
+  signs = {
+    add = { text = '+' },
+    change = { text = '~' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
+    changedelete = { text = '~' },
+  },
+})
