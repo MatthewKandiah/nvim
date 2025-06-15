@@ -54,7 +54,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sg', builtin.live_grep)
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
       vim.keymap.set('n', '<leader>sr', builtin.resume)
-      vim.keymap.set('n', '<leader>s?', builtin.oldfiles)
+      vim.keymap.set('n', '<leader>?', builtin.oldfiles)
       vim.keymap.set('n', '<leader><leader>', builtin.buffers)
     end
   },
