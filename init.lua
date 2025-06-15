@@ -68,7 +68,7 @@ require('lazy').setup({
   'hrsh7th/nvim-cmp',
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
-  { 'stevearc/oil.nvim', opts = {} },
+  'stevearc/oil.nvim',
   'numToStr/Comment.nvim',
   'tpope/vim-fugitive',
 })
@@ -88,3 +88,4 @@ require('gitsigns').setup({
   },
 })
 require('telescope-config')
+require('oil').setup({})
