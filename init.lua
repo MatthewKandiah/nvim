@@ -58,8 +58,8 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require("lazy").setup({
+  "tpope/vim-fugitive",
   {
-    "tpope/vim-fugitive",
     "stevearc/oil.nvim",
     config = function()
       local oil = require('oil')
