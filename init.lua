@@ -71,7 +71,7 @@ require("lazy").setup({
     end,
   },
   "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
-  {                           -- Adds git related signs to the gutter, as well as utilities for managing changes
+  {                            -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {
@@ -83,7 +83,7 @@ require("lazy").setup({
       },
     },
   },
-  {                   -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     "folke/which-key.nvim",
     event = "VimEnter", -- Sets the loading event to 'VimEnter'
     opts = {
@@ -216,9 +216,6 @@ require("lazy").setup({
     -- Main LSP Configuration
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- Useful status updates for LSP.
-      { "j-hui/fidget.nvim", opts = {} },
-
       -- Allows extra capabilities provided by blink.cmp
       "saghen/blink.cmp",
     },
