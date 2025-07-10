@@ -5,6 +5,11 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.showmode = false
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.smarttab = true
+vim.o.expandtab = true
 
 -- Sync clipboard between OS and Neovim.
 vim.schedule(function()
